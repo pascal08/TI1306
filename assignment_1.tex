@@ -1,0 +1,499 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{enumitem}
+\usepackage[table]{xcolor}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\title{TI1306 - Assignment 1}
+\author{pascallubbers8 }
+\date{September 2016}
+
+\begin{document}
+
+\maketitle
+
+\section{Formulating precisely}
+
+\begin{enumerate}[label=(\alph*)]
+
+    \item
+    \begin{enumerate}[label=\roman*.]
+      \item $\forall x(Student(x) \rightarrow Human(x))$
+      \item $\forall x(Student(x) \rightarrow \exists y (Laptop(y) \wedge Owns(x,y)))$
+      \item $\forall x(SmartStudent(x) \leftrightarrow AttendLectures(x) \wedge DoHomework(x))$
+      \item $\exists x(Student(x) \rightarrow \exists y(Laptop(y) \wedge Owns(x,y))$
+      \item $\forall x(Student(x) \rightarrow \exists y(Exam(y) \rightarrow PassedOneOrMore(x.y)))$
+    \end{enumerate}
+    
+    \item
+    \begin{enumerate}[label=\roman*.]
+      \item All students have a student ID
+      \item All student IDs have a length of 7 and the first digit in not 0
+      \item There are no students with the same ID
+      \item There is a student who failed all exams
+    \end{enumerate}
+    
+    \item
+    \begin{enumerate}[label=(\alph*)]
+        \item 
+        \begin{enumerate}[label=\roman*.]
+          \item There is a student who is not human
+          \item There is a student who doesn't own a laptop
+          \item There is a student who isn't smart and attend all lectures and does homework
+          \item There is no student without a laptop
+          \item There is a student who didn't pass any exams
+        \end{enumerate}
+        
+        \item
+        \begin{enumerate}[label=\roman*.]
+          \item There is a student without a student ID
+          \item there is a student ID that start with a 0
+          \item There are students with the same ID
+          \item There is no student who failed all exams
+        \end{enumerate}
+    \end{enumerate}
+    
+    \item
+    \begin{enumerate}[label=\roman*.]
+        \item $\forall x \exists y(Person(x) \wedge Person(y) \rightarrow Likes(x,y))$ \\
+        $\neg \exists x \exists y(Person(x) \wedge Person(y) \rightarrow \neg Likes(x,y))$
+        \item $\forall x \exists y(Bird(x) \wedge Something(y)  \rightarrow (Whistle(x,y) \wedge Whistle(y,x)))$ \\
+        $\forall x \forall y(Bird(x) \wedge Something(y) \rightarrow (Whistle(x,y) \leftrightarrow Whistle(y,x)))$
+        \item $\forall x \exists y(Lawyer(x) \wedge PersonInCourt(y) \rightarrow ((Defend(x,y) \vee Prosecute(x,y)))$ \\
+        $\forall x \forall y(PersonInCourt(x) \wedge Lawyer(y) \rightarrow Defend(y,x) \vee Prosecute(y,x))$
+        \item $\exists x \forall y (Lawyer(x) \wedge Person(y) \rightarrow Defend(x,y) \vee Prosecute(x,y))$ \\
+        $\exists x \exists y (Lawyer(x) \wedge Someone(y) \wedge Innocent(y) \rightarrow Defend(x,y))$
+        \item $\forall x \exists y(Somebody(x) \rightarrow (Hates(x,y) \vee Likes(x,y))$ \\
+        $\forall x \exists (Somebody(x) \wedge Homework(y) \rightarrow (Hates(x,y) \oplus Likes(x,y))$
+    \end{enumerate}
+    
+    \item 
+    \begin{enumerate}[label=\roman*.]
+        \item Apples are fruit
+        \item Dogs are not humans
+        \item Apples are fruit and fruit is food
+        \item A dog is an animal and a dog is not a human
+        \item A teaching assistant is an assistant and a teaching assistant is a student but an assistant is not by definition a student
+    \end{enumerate}
+    
+\end{enumerate}
+
+\section{Propositional calculus}
+
+\begin{enumerate}[label=(\alph*)]
+
+    \item 
+    \begin{enumerate}[label=\roman*.]
+        \item
+        \begin{enumerate}[label={}]         
+             \item $a: q\rightarrow{}r$
+             \item $b: p\rightarrow{}(q\rightarrow{}r)$
+             \item $c: r\rightarrow{}q$
+             \item $d: (r\rightarrow{}q)\rightarrow{}p$
+             \item $e: p\rightarrow{}(q\rightarrow{}r)\wedge{}(r\rightarrow{}q)\rightarrow{}p$
+             \item $f: p\vee{}q$
+             \item $g: \neg{}(p\vee{}q)$
+             \item $h: \neg{}(p\vee{}q)\wedge{}r$
+             \item $i: p\rightarrow{}(q\rightarrow{}r)\wedge{}(r\rightarrow{}q)\rightarrow{}p\equiv \neg{}(p\vee{}q)\wedge{}r$
+        \end{enumerate}
+        \begin{displaymath}
+            \begin{array}{|c|c|c|c|c|c|c|c|c|c|c|c}
+               p & q & r & a & b & c & d & e & f & g & h & i \\
+            \hline
+            \rowcolor{green!20}
+            0 & 0 & 0 & 1 & 1 & 1 & 0 & 0 & 0 & 1 & 0 & 1 \\
+            \rowcolor{green!20}
+            0 & 0 & 1 & 1 & 1 & 0 & 1 & 1 & 0 & 1 & 1 & 1 \\
+            \rowcolor{green!20}
+            0 & 1 & 0 & 0 & 1 & 1 & 0 & 0 & 1 & 0 & 0 & 1 \\
+            \rowcolor{green!20}
+            0 & 1 & 1 & 1 & 1 & 1 & 0 & 0 & 1 & 0 & 0 & 1 \\
+            \hline
+            1 & 0 & 0 & 1 & 1 & 1 & 1 & 1 & 1 & 0 & 0 & 0 \\
+            1 & 0 & 1 & 1 & 1 & 0 & 1 & 1 & 1 & 0 & 0 & 0 \\
+            \rowcolor{green!20}
+            1 & 1 & 0 & 0 & 0 & 1 & 1 & 0 & 1 & 0 & 0 & 1 \\
+            1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 0 & 0 & 0 \\
+            \hline
+            \end{array}
+        \end{displaymath}
+        
+        \item 
+        \begin{enumerate}[label={}]         
+             \item $a: q\lor{}\neg{}q$
+             \item $b: \neg{}(q\lor{}\neg{}q)$
+             \item $c: p\lor{}\neg{}q$
+             \item $d: \neg{}(q\lor{}\neg{}q)\lor{}(p\lor{}\neg{}q)$
+             \item $e: r\land{}\neg{}r$
+             \item $f: q\rightarrow{}p$
+             \item $g: (r\land{}\neg{}r)\lor{}(q\rightarrow{}p)$
+             \item $h: (\neg{}(q\lor{}\neg{}q)\lor{}(p\lor{}\neg{}q))\leftrightarrow{}((r\land{}\neg{}r)\lor{}(q\rightarrow{}p))$
+             \item $i: p\lor{}\neg{}p$
+             \item $j: (\neg{}(q\lor{}\neg{}q)\lor{}(p\lor{}\neg{}q))\leftrightarrow{}((r\land{}\neg{}r)\lor{}(q\rightarrow{}p))\equiv{}p\lor{}\neg{}p$
+        \end{enumerate}
+        \begin{displaymath}
+            \begin{array}{|c|c|c|c|c|c|c|c|c|c|c|c|c}
+               p & q & r & a & b & c & d & e & f & g & h & i & j\\
+            \hline
+            \rowcolor{green!20}
+            0 & 0 & 0 & 1 & 0 & 1 & 1 & 0 & 1 & 1 & 1 & 1 & 1 \\
+            \rowcolor{green!20}
+            0 & 0 & 1 & 1 & 0 & 1 & 1 & 0 & 1 & 1 & 1 & 1 & 1 \\
+            \rowcolor{green!20}
+            0 & 1 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 1 & 1 \\
+            \rowcolor{green!20}
+            0 & 1 & 1 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 1 & 1 \\
+            \hline
+            \rowcolor{green!20}
+            1 & 0 & 0 & 1 & 0 & 1 & 1 & 0 & 1 & 1 & 1 & 1 & 1 \\
+            \rowcolor{green!20}
+            1 & 0 & 1 & 1 & 0 & 1 & 1 & 0 & 1 & 1 & 1 & 1 & 1 \\
+            \rowcolor{green!20}
+            1 & 1 & 0 & 1 & 0 & 1 & 1 & 0 & 1 & 1 & 1 & 1 & 1 \\
+            \rowcolor{green!20}
+            1 & 1 & 1 & 1 & 0 & 1 & 1 & 0 & 1 & 1 & 1 & 1 & 1 \\
+            \hline
+            \end{array}
+        \end{displaymath}
+        
+        \item
+        \begin{enumerate}[label={}]         
+            \item $a: p\rightarrow{}q$  
+            \item $b: r\lor{}\lnot{}q$
+            \item $c: (p\rightarrow{}q)\land{}(r\lor{}\lnot{}q)$
+            \item $d: \lnot{}p\land{}r$
+            \item $e: \lnot{}(\lnot{}p\land{}r)$
+            \item $f: \lnot{}p\land{}\lnot{}q$
+            \item $g: (\lnot{}(\lnot{}p\land{}r))\rightarrow{}(\lnot{}p\land{}\lnot{}q)$
+            \item $h: q\land{}r$
+            \item $i: (\lnot{}(\lnot{}p\land{}r)\rightarrow{}(\lnot{}p\land{}\lnot{}q))\lor{}(q\land{}r)$
+            \item $j: ((p\rightarrow{}q)\land{}(r\lor{}\lnot{}q))\equiv{}(\lnot{}(\lnot{}p\land{}r))\rightarrow{}(\lnot{}p\land{}\lnot{}q))\lor{}(q\land{}r)$
+        \end{enumerate}
+        \begin{displaymath}
+            \begin{array}{|c|c|c|c|c|c|c|c|c|c|c|c|c}
+               p & q & r & a & b & c & d & e & f & g & h & i & j\\
+            \hline
+            \rowcolor{green!20}
+            0 & 0 & 0 & 1 & 1 & 1 & 0 & 1 & 1 & 1 & 0 & 1 & 1 \\
+            \rowcolor{green!20}
+            0 & 0 & 1 & 1 & 1 & 1 & 1 & 0 & 1 & 1 & 0 & 1 & 1 \\
+            \rowcolor{green!20}
+            0 & 1 & 0 & 1 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 1 \\
+            \rowcolor{green!20}
+            0 & 1 & 1 & 1 & 1 & 1 & 1 & 0 & 0 & 1 & 1 & 1 & 1 \\
+            \hline
+            \rowcolor{green!20}
+            1 & 0 & 0 & 0 & 1 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 1 \\
+            \rowcolor{green!20}
+            1 & 0 & 1 & 0 & 1 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 1 \\
+            \rowcolor{green!20}
+            1 & 1 & 0 & 1 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 1 \\
+            \rowcolor{green!20}
+            1 & 1 & 1 & 1 & 1 & 1 & 0 & 1 & 0 & 0 & 1 & 1 & 1 \\
+            \hline
+            \end{array}
+        \end{displaymath}
+        
+        \item 
+        \begin{enumerate}[label={}]         
+            \item $a: p\lor{}q$     
+            \item $b: r\land{}s$     
+            \item $c: q\lor{}r$     
+            \item $d: (r\land{}s)\leftrightarrow{}(q\lor{}r)$     
+            \item $e: (p\lor{}q)\rightarrow{}((r\land{}s)\leftrightarrow{}(q\lor{}r))$     
+            \item $f: \lnot{}p\lor{}\lnot{}q$     
+            \item $g: r\Rightarrow{}s$     
+            \item $h: (\lnot{}p\lor{}\lnot{}q)\lor{}(r\Rightarrow{}s)$     
+            \item $i: (p\lor{}q)\rightarrow{}((r\land{}s)\leftrightarrow{}(q\lor{}r))\Leftrightarrow{}(\lnot{}p\lor{}\lnot{}q)\lor{}(r\Rightarrow{}s)$  
+        \end{enumerate}
+        \begin{displaymath}
+            \begin{array}{|c|c|c|c|c|c|c|c|c|c|c|c|c}
+               p & q & r & s & a & b & c & d & e & f & g & h & i \\
+            \hline
+            \rowcolor{green!20}
+            0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 1 & 1 & 1 & 1 & 1 \\
+            \rowcolor{green!20}
+            0 & 0 & 0 & 1 & 0 & 0 & 0 & 1 & 1 & 1 & 1 & 1 & 1 \\
+            \rowcolor{green!20}
+            0 & 0 & 1 & 0 & 0 & 0 & 1 & 0 & 1 & 1 & 0 & 1 & 1 \\
+            \rowcolor{green!20}
+            0 & 0 & 1 & 1 & 0 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 \\
+            \hline
+            0 & 1 & 0 & 0 & 1 & 0 & 1 & 0 & 0 & 0 & 1 & 1 & 0 \\
+            0 & 1 & 0 & 1 & 1 & 0 & 1 & 0 & 0 & 0 & 1 & 1 & 0 \\
+            \rowcolor{green!20}
+            0 & 1 & 1 & 0 & 1 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 1 \\
+            \rowcolor{green!20}
+            0 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 0 & 1 & 1 & 1 \\
+            \hline
+            \rowcolor{green!20}
+            1 & 0 & 0 & 0 & 1 & 0 & 0 & 1 & 1 & 0 & 1 & 1 & 1 \\
+            \rowcolor{green!20}
+            1 & 0 & 0 & 1 & 1 & 0 & 0 & 1 & 1 & 0 & 1 & 1 & 1 \\
+            \rowcolor{green!20}
+            1 & 0 & 1 & 0 & 1 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 1 \\
+            \rowcolor{green!20}
+            1 & 0 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 0 & 1 & 1 & 1 \\
+            \hline
+            1 & 1 & 0 & 0 & 1 & 0 & 1 & 0 & 0 & 0 & 1 & 1 & 0 \\
+            1 & 1 & 0 & 1 & 1 & 0 & 1 & 0 & 0 & 0 & 1 & 1 & 0 \\
+            \rowcolor{green!20}
+            1 & 1 & 1 & 0 & 1 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 1 \\
+            \rowcolor{green!20}
+            1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 0 & 1 & 1 & 1 \\
+            \hline
+            \end{array}
+        \end{displaymath}
+        
+        \item 
+        \begin{enumerate}[label={}]         
+            \item $a: q\rightarrow{}p$         
+            \item $b: \lnot{}(q\rightarrow{}p)$         
+            \item $c: p\land{}s$         
+            \item $d: (\lnot{}(q\rightarrow{}p))\land{}(p\land{}s)$       
+            \item $e: s\Leftrightarrow{}r$          
+            \item $f: r\Leftrightarrow{}\lnot{}p$         
+            \item $g: p\Leftrightarrow{}r$   
+            \item $h: f\land{}g$
+            \item $i: (s\Leftrightarrow{}r)\land{}(f\land{}g)$         
+            \item $j: (\lnot{}(q\rightarrow{}p))\land{}(p\land{}s)\Leftrightarrow{}((s\Leftrightarrow{}r)\land{}(f\land{}g))$
+        \end{enumerate}
+        \begin{displaymath}
+            \begin{array}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c}
+               p & q & r & s & a & b & c & d & e & f & g & h & i & j \\
+            \hline
+            \rowcolor{green!20}
+            0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 1 & 0 & 1 & 0 & 0 & 1 \\
+            \rowcolor{green!20}
+            0 & 0 & 0 & 1 & 1 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 1 \\
+            \rowcolor{green!20}
+            0 & 0 & 1 & 0 & 1 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 1 \\
+            \rowcolor{green!20}
+            0 & 0 & 1 & 1 & 1 & 0 & 0 & 0 & 1 & 1 & 0 & 0 & 0 & 1 \\
+            \hline
+            \rowcolor{green!20}
+            0 & 1 & 0 & 0 & 0 & 1 & 0 & 0 & 1 & 0 & 1 & 0 & 0 & 1 \\
+            \rowcolor{green!20}
+            0 & 1 & 0 & 1 & 0 & 1 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 1 \\
+            \rowcolor{green!20}
+            0 & 1 & 1 & 0 & 0 & 1 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 1 \\
+            \rowcolor{green!20}
+            0 & 1 & 1 & 1 & 0 & 1 & 0 & 0 & 1 & 1 & 0 & 0 & 0 & 1 \\
+            \hline
+            \rowcolor{green!20}
+            1 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 1 & 1 & 0 & 0 & 0 & 1 \\
+            \rowcolor{green!20}
+            1 & 0 & 0 & 1 & 1 & 0 & 1 & 0 & 0 & 1 & 0 & 0 & 0 & 1 \\
+            \rowcolor{green!20}
+            1 & 0 & 1 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 1 \\
+            \rowcolor{green!20}
+            1 & 0 & 1 & 1 & 1 & 0 & 1 & 0 & 1 & 0 & 1 & 0 & 0 & 1 \\
+            \hline
+            \rowcolor{green!20}
+            1 & 1 & 0 & 0 & 1 & 0 & 0 & 0 & 1 & 1 & 0 & 0 & 0 & 1 \\
+            \rowcolor{green!20}
+            1 & 1 & 0 & 1 & 1 & 0 & 1 & 0 & 0 & 1 & 0 & 0 & 0 & 1 \\
+            \rowcolor{green!20}
+            1 & 1 & 1 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 1 \\
+            \rowcolor{green!20}
+            1 & 1 & 1 & 1 & 1 & 0 & 1 & 0 & 1 & 0 & 1 & 0 & 0 & 1 \\
+            \hline
+            \end{array}
+        \end{displaymath}
+        
+    \end{enumerate}
+    
+    \item 
+    \begin{enumerate}[label=\roman*.]
+        \item 
+        \quad $\neg{}(p\rightarrow{}q)$ \\
+        \quad $\equiv{}\neg{}(\neg{}p\lor{}q)$ \\
+        \quad $\equiv{}({}p\land{}\neg{}q)$ \\
+        
+        \item 
+        \quad $(\neg{}(p\lor{}q)\lor{}r)$ \\
+        \quad $\equiv{}((\neg{}p\land{}\neg{}q)\lor{}r)$ \\
+        
+        \item 
+        \quad $((p\land{}q)\lor(q\rightarrow{}(p\land{}\neg{}r)))$ \\
+        \quad $\equiv{}((p\land{}q)\lor(\neg{}q\lor{}(p\land{}\neg{}r)))$ \\
+        
+        \item 
+        \quad $\neg((a\land{}b)\lor{}\neg{}(c\lor{}d))$ \\
+        \quad $\equiv{}\neg{}(a\land{}b)\land{}(c\lor{}d))$ \\
+        \quad $\equiv{}(\neg{}a\lor{}\neg{}b)\land{}(c\lor{}d))$ \\
+        
+        \item 
+        \quad $(p\leftrightarrow{}q)$ \\
+        \quad $\equiv{}(p\rightarrow{}q)\land{}(q\rightarrow{}p)$  \\
+        \quad $\equiv{}(\neg{}p\lor{}q)\land{}(\neg{}q\lor{}p)$  \\
+        \quad $\equiv{}((\neg{}p\lor{}q)\land{}\neg{}q)\lor((\neg{}p\lor{}q)\land{}p)$ \\
+        \quad $\equiv{}(\neg{}q\land{}\neg{}p)\lor{}(\neg{}q\land{}q)\lor{}(p\land{}\neg{}p)\lor{}(p\land{}q)$ \\
+        \quad $\equiv{}(\neg{}q\land{}\neg{}p)\lor{}(p\land{}q)$ \\
+        
+        \item 
+        \quad $\neg{}((p\rightarrow{}\neg{}q)\lor(\neg{}r\land{}s))$ \\
+        \quad $\equiv{} \neg{}((\neg{}p\lor{}\neg{}q)\lor(\neg{}r\land{}s))$ \\
+        \quad $\equiv{} \neg{}(\neg{}p\lor{}\neg{}q)\land{}\neg{}(\neg{}r\land{}s))$ \\
+        \quad $\equiv{} (p\land{}q)\land{}(r\lor{}\neg{}s))$ \\
+        \quad $\equiv{} ((p\land{}q)\land{}r)\lor{}((p\land{}q)\land{}\neg{}s)$ \\
+        
+        \item 
+        \quad $\neg{}((p\rightarrow{}q)\leftrightarrow{}(r\lor{}s)$ \\
+        \quad $\equiv{} \neg{}(((p\rightarrow{}q)\rightarrow{}(r\lor{}s))\land{}((r\lor{}s)\rightarrow{}(p\rightarrow{}q)))$ \\
+        \quad $\equiv{} \neg{}((\neg{}(p\rightarrow{}q)\lor{}(r\lor{}s))\land{}(\neg{}(r\lor{}s)\lor{}(p\rightarrow{}q)))$ \\
+        \quad $\equiv{} \neg{}((\neg{}(\neg{}p\lor{}q)\lor{}(r\lor{}s))\land{}(\neg{}(r\lor{}s)\lor{}(\neg{}p\lor{}q)))$ \\
+        \quad $\equiv{} \neg{}(\neg{}(\neg{}p\lor{}q)\lor{}(r\lor{}s))\land{}\neg{}(\neg{}(r\lor{}s)\lor{}(\neg{}p\lor{}q))$ \\
+        \quad $\equiv{} ((\neg{}p\lor{}q)\land{}\neg{}(r\lor{}s))\lor{}((r\lor{}s)\land{}\neg{}(\neg{}p\lor{}q))$ \\
+        \quad $\equiv{} ((\neg{}p\lor{}q)\land{}(\neg{}r\land{}\neg{}s))\lor{}((r\lor{}s)\land{}(p\land{}\neg{}q))$ \\
+        \quad $\equiv{} (((\neg{}r\land{}\neg{}s)\land{}\neg{}p)\lor{}((\neg{}r\land{}\neg{}s)\land{}q))\lor{}(((p\land{}\neg{}q)\land{}r)\lor{}((p\land{}\neg{}q)\land{}s)$ \\ 
+    \end{enumerate}
+    
+    \item 
+    \begin{enumerate}[label=\roman*.]
+        \item 
+        \quad $(p\lor{}q)$ \\
+        \quad $\equiv{} \neg{}\neg{}(p\lor{}q)$ \\
+        \quad $\equiv{} \neg{}(p\downarrow{}q)$ \\
+        \quad $\equiv{} (p\downarrow{}q)\downarrow{}(p\downarrow{}q)$ \\
+        
+        \item
+        \quad $(p\rightarrow{}q)$ \\
+        \quad $\equiv{} (\neg{}p\lor{}q)$ \\
+        \quad $\equiv{} ((p\downarrow{}p)\lor{}q)$ \\
+        \quad $\equiv{} \neg{}\neg{}((p\downarrow{}p)\lor{}q)$ \\
+        \quad $\equiv{} \neg{}((p\downarrow{}p)\downarrow{}q)$ \\
+        \quad $\equiv{} ((p\downarrow{}p)\downarrow{}q)\downarrow{}((p\downarrow{}p)\downarrow{}q)$ \\
+        
+        \item
+        \quad $(p\leftrightarrow{}q)$ \\
+        \quad $\equiv{} (p\rightarrow{}q)\land(q\rightarrow{}p)$ \\
+        \quad $\equiv{} (p\rightarrow{}q)\land(q\rightarrow{}p)$ \\
+        \quad $\equiv{} ((p\rightarrow{}q)\downarrow{}(p\rightarrow{}q))\downarrow{}((q\rightarrow{}p)\downarrow{}(q\rightarrow{}p))$ \\
+        \quad $\equiv{} ((((p\downarrow{}p)\downarrow{}q)\downarrow{}((p\downarrow{}p)\downarrow{}q))\downarrow{}(((p\downarrow{}p)\downarrow{}q)\downarrow{}((p\downarrow{}p)\downarrow{}q)))\downarrow{}((((q\downarrow{}q)\downarrow{}p)\downarrow{}((q\downarrow{}q)\downarrow{}p))\downarrow{}(((q\downarrow{}q)\downarrow{}p)\downarrow{}((q\downarrow{}q)\downarrow{}p)))$
+        
+        \item 
+        \quad $(p\land{}(q\rightarrow{}r)$ \\
+        \quad $\equiv{} (p\land{}(((q\downarrow{}q)\downarrow{}r)\downarrow{}((q\downarrow{}q\downarrow{})\downarrow{}r)))$ \\
+        \quad $\equiv{} ((p\downarrow{}p)\downarrow{}((((q\downarrow{}q)\downarrow{}r)\downarrow{}((q\downarrow{}q\downarrow{})\downarrow{}r))\downarrow{}(((q\downarrow{}q)\downarrow{}r)\downarrow{}((q\downarrow{}q\downarrow{})\downarrow{}r))))$ \\
+        
+        \item 
+        \quad $(\neg{}(p\lor{}q)\rightarrow{}\neg{}r)$ \\
+        \quad $\equiv{} ((p\downarrow{}q)\rightarrow{}(r\downarrow{}r))$ \\
+        \quad $\equiv{} ((((p\downarrow{}q)\downarrow{}(p\downarrow{}q))\downarrow{}(r\downarrow{}r))\downarrow{}(((p\downarrow{}q)\downarrow{}(p\downarrow{}q))\downarrow{}(r\downarrow{}r)))$ \\
+    \end{enumerate}
+    
+    \item 
+    \begin{enumerate}[label=\roman*.]
+        \item 
+        $a,a\rightarrow{}b\therefore{}b$
+        \begin{displaymath}
+            \begin{array}{|c|c||c|c||c|}
+            \hline
+               a
+             & b
+             & a\Rightarrow{}b
+             & \lnot{}a
+             & \lnot{}b \\
+            \hline
+            \rowcolor{green!20}
+            0 & 0 & 1 & 1 & 1 \\
+            \rowcolor{red!20}
+            0 & 1 & 1 & 1 & 0 \\
+            1 & 0 & 0 & 0 & 1 \\
+            1 & 1 & 1 & 0 & 0 \\
+            \hline
+            \end{array}
+        \end{displaymath}
+    
+        \item 
+        $a\rightarrow{}b,\neg{}a\therefore{}\neg{}b$
+        \begin{displaymath}
+            \begin{array}{|c|c||c|c||c|}
+            \hline
+               a
+             & b
+             & a\Rightarrow{}b
+             & \lnot{}a
+             & \lnot{}b \\
+            \hline
+            \rowcolor{green!20}
+            0 & 0 & 1 & 1 & 1 \\
+            \rowcolor{red!20}
+            0 & 1 & 1 & 1 & 0 \\
+            1 & 0 & 0 & 0 & 1 \\
+            1 & 1 & 1 & 0 & 0 \\
+            \hline
+            \end{array}
+        \end{displaymath}
+    
+        \item 
+        $a\leftrightarrow{}b,a\rightarrow{}p\therefore{}b\rightarrow{}p$
+        \begin{displaymath}
+            \begin{array}{|c|c|c||c|c||c|}
+            \hline
+               a
+             & b
+             & p
+             & a\Leftrightarrow{}b
+             & a\Rightarrow{}p
+             & b\Rightarrow{}p \\
+            \hline
+            \rowcolor{green!20}
+            0 & 0 & 0 & 1 & 1 & 1 \\
+            \rowcolor{green!20}
+            0 & 0 & 1 & 1 & 1 & 1 \\
+            0 & 1 & 0 & 0 & 1 & 0 \\
+            0 & 1 & 1 & 0 & 1 & 1 \\
+            \hline
+            1 & 0 & 0 & 0 & 0 & 1 \\
+            1 & 0 & 1 & 0 & 1 & 1 \\
+            1 & 1 & 0 & 1 & 0 & 0 \\
+            \rowcolor{green!20}
+            1 & 1 & 1 & 1 & 1 & 1 \\
+            \hline
+            \end{array}
+        \end{displaymath}
+        
+        \item
+        If you are hungry, then you have not eaten for six hours. \\
+        You have not eaten for eight hours. \\
+        Therefore, you are not hungry. \\
+        
+        a: Hungry \\ 
+        b: NotEatenForSixHours \\
+        c: NotEatenForEightHours \\
+        
+        $a\rightarrow{}b,c\therefore{}\neg{}a$
+        \begin{displaymath}
+            \begin{array}{|c|c|c||c|c||c|}
+            \hline
+               a
+             & b
+             & c
+             & a\Rightarrow{}b
+             & c
+             & \lnot{}a \\
+            \hline
+            0 & 0 & 0 & 1 & 0 & 1 \\
+            \rowcolor{green!20}
+            0 & 0 & 1 & 1 & 1 & 1 \\
+            0 & 1 & 0 & 1 & 0 & 1 \\
+            \rowcolor{green!20}
+            0 & 1 & 1 & 1 & 1 & 1 \\
+            \hline
+            1 & 0 & 0 & 0 & 0 & 0 \\
+            1 & 0 & 1 & 0 & 1 & 0 \\
+            1 & 1 & 0 & 1 & 0 & 0 \\
+            \rowcolor{red!20}
+            1 & 1 & 1 & 1 & 1 & 0 \\
+            \hline
+            \end{array}
+        \end{displaymath}
+                
+    \end{enumerate}
+
+\end{enumerate}
+
+\end{document}
